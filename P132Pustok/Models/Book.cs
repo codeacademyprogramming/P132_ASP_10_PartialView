@@ -22,5 +22,6 @@ namespace P132Pustok.Models
 
         public Author Author { get; set; }
         public Genre Genre { get; set; }
+        public List<BookImage> BookImages { get; set; }
     }
 }
