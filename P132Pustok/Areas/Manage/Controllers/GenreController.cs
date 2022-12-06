@@ -16,9 +16,9 @@ namespace P132Pustok.Areas.Manage.Controllers
         }
         public IActionResult Index(int page=1)
         {
-            var model = _context.Genres.Include(x=>x.Books).Skip((page-1)*2).Take(2).ToList();
+            var model = _context.Genres.Include(x=>x.Books).Skip((page-1)*1).Take(1).ToList();
             ViewBag.Page = page;
-            ViewBag.TotalPage = (int)Math.Ceiling(_context.Genres.Count() / 2d);
+            ViewBag.TotalPage = (int)Math.Ceiling(_context.Genres.Count() / 1d);
 
             return View(model);
         }
@@ -51,6 +51,9 @@ namespace P132Pustok.Areas.Manage.Controllers
         public IActionResult Edit(int id)
         {
             Genre genre = _context.Genres.FirstOrDefault(x => x.Id == id);
+
+            if (genre == null)
+                return RedirectToAction("error", "dashboard");
 
 
 
