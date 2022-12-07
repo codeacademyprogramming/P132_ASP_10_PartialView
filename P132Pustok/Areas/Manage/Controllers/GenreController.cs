@@ -106,6 +106,5 @@ namespace P132Pustok.Areas.Manage.Controllers
 
             return RedirectToAction("index");
         }
-
     }
 }

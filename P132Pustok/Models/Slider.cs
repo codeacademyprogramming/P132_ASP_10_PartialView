@@ -20,6 +20,6 @@ namespace P132Pustok.Models
         public string? Image { get; set; }
         public int Order { get; set; }
         [NotMapped]
-        public IFormFile ImageFile { get; set; }
+        public IFormFile? ImageFile { get; set; }
     }
 }
