@@ -49,14 +49,6 @@ namespace P132Pustok.Areas.Manage.Controllers
         {
             if (slider.ImageFile == null)
                 ModelState.AddModelError("ImageFile", "ImageFile is required");
-            else
-            {
-                if (slider.ImageFile.ContentType != "image/png" && slider.ImageFile.ContentType != "image/jpeg")
-                    ModelState.AddModelError("ImageFile", "Content type must be image/png or image/jpeg!");
-
-                if (slider.ImageFile.Length > 2097152)
-                    ModelState.AddModelError("ImageFile", "File size must be less than 2MB!");
-            }
 
             if (!ModelState.IsValid)
             {
@@ -92,7 +84,7 @@ namespace P132Pustok.Areas.Manage.Controllers
                 ModelState.AddModelError("ImageFile", "File size must be less than 2MB!");
 
             if (!ModelState.IsValid)
-                return View();
+                return View(slider);
 
             Slider existSlider = _context.Sliders.FirstOrDefault(x => x.Id == slider.Id);
 

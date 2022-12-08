@@ -28,6 +28,12 @@
                         </select>
                         <span class="text-danger" asp-validation-for="AuthorId"></span>
                     </div>
+                      <div class="form-group">
+                        <label asp-for="TagIds">Tags</label>
+                        <select asp-for="TagIds" class="form-control" asp-items="@(new SelectList(ViewBag.Tags,nameof(Tag.Id),nameof(Tag.Name)))">
+                        </select>
+                        <span class="text-danger" asp-validation-for="TagIds"></span>
+                    </div>
                     <div class="form-group">
                         <label asp-for="SalePrice">SalePrice</label>
                         <input asp-for="SalePrice" class="form-control">
@@ -76,13 +82,17 @@
                         <input asp-for="ImageFiles" class="form-control">
                         <span class="text-danger" asp-validation-for="ImageFiles"></span>
 
-                        @foreach (var bookImg in Model.BookImages.Where(x => x.Status == null).ToList())
+                        <div class="d-flex mt-3">
+                               @foreach (var bookImg in Model.BookImages.Where(x => x.Status == null).ToList())
                         {
-                            <div class="img-box">
+                            <div class="img-box mx-1">
+                                <span class="delete-item">x</span>
                                 <img width="200" src="~/uploads/books/@bookImg.Name" />
                                 <input type="hidden" name="BookImageIds" value="@bookImg.Id">
                             </div>
                         }
+                        </div>
+                     
 
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>

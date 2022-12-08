@@ -16,5 +16,7 @@ namespace P132Pustok.DAL
         public DbSet<BookImage> BookImages { get; set; }
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<Setting> Settings { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<BookTag> BookTags { get; set; }
     }
 }

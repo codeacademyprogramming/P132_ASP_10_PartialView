@@ -35,3 +35,7 @@ $(document).on("click", ".trash-btn", function (e) {
         }
     })
 })
+
+$(document).on("click", ".delete-item", function (e) {
+    $(this).parent().remove();
+})

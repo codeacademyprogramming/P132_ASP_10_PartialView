@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using P132Pustok.Attributes.ValidationAttributes;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace P132Pustok.Models
@@ -20,6 +21,8 @@ namespace P132Pustok.Models
         public string? Image { get; set; }
         public int Order { get; set; }
         [NotMapped]
+        [MaxFileSize(2)]
+        [AllowedFileTypes("image/png","image/jpeg")]
         public IFormFile? ImageFile { get; set; }
     }
 }
