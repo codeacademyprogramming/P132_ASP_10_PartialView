@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using P132Pustok.DAL;
+using P132Pustok.Middlewares;
 using P132Pustok.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,10 @@ builder.Services.AddDbContext<PustokContext>(opt =>
 //builder.Services.AddSingleton<LayoutService>();
 builder.Services.AddScoped<LayoutService>();
 //builder.Services.AddTransient<LayoutService>();
+builder.Services.AddSession(opt =>
+{
+    opt.IdleTimeout = TimeSpan.FromMinutes(5);
+});
 
 
 var app = builder.Build();
@@ -24,6 +29,26 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+app.UseSession();
+
+//app.Use(async (context, next) =>
+//{
+//    string path = context.Request.Path.Value;
+
+//    if (path.StartsWith("/manage"))
+//    {
+//        string username = context.Session.GetString("username");
+//        if(username == null)
+//        {
+//            context.Response.Redirect("/manage/account/login");
+//        }
+//    }
+//    await next();
+//});
+
+app.UseMiddleware<AuthenticationMiddleware>();
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

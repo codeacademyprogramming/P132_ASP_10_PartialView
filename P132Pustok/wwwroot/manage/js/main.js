@@ -17,9 +17,12 @@ $(document).on("click", ".trash-btn", function (e) {
 
             fetch(url)
                 .then(response => {
+
+                    console.log(response)
+
                     if (response.ok) {
                         Swal.fire(
-                            'Deleted!',
+                            'Deleted!', 
                             'Your file has been deleted.',
                             'success'
                         ).then(() => window.location.reload())

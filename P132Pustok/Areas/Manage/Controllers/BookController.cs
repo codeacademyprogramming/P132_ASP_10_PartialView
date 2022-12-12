@@ -29,8 +29,10 @@ namespace P132Pustok.Areas.Manage.Controllers
             var model = PaginatedList<Book>.Create(query, page, 4);
             return View(model);
         }
+
         public IActionResult Create()
         {
+
             ViewBag.Genres = _context.Genres.ToList();
             ViewBag.Authors = _context.Authors.ToList();
             ViewBag.Tags = _context.Tags.ToList();
@@ -181,7 +183,7 @@ namespace P132Pustok.Areas.Manage.Controllers
                 ViewBag.Authors = _context.Authors.ToList();
                 ViewBag.Tags = _context.Tags.ToList();
 
-                existBook.TagIds = book.BookTags.Select(x => x.TagId).ToList();
+                existBook.TagIds = existBook.BookTags.Select(x => x.TagId).ToList();
 
                 return View(existBook);
             }

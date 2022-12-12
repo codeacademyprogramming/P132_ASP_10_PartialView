@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using P132Pustok.DAL;
 
@@ -11,9 +12,10 @@ using P132Pustok.DAL;
 namespace P132Pustok.Migrations
 {
     [DbContext(typeof(PustokContext))]
-    partial class PustokContextModelSnapshot : ModelSnapshot
+    [Migration("20221212065223_RoleAddedIntoAccounts")]
+    partial class RoleAddedIntoAccounts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

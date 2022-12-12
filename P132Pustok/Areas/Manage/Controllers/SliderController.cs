@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using P132Pustok.Attributes.FilterAttributes;
 using P132Pustok.DAL;
 using P132Pustok.Helpers;
 using P132Pustok.Models;
@@ -64,6 +65,7 @@ namespace P132Pustok.Areas.Manage.Controllers
             return RedirectToAction("index");
         }
 
+        [AuthFilter(Roles = "SuperAdmin")]
         public IActionResult Edit(int id)
         {
             Slider slider = _context.Sliders.FirstOrDefault(x => x.Id == id);
@@ -112,6 +114,7 @@ namespace P132Pustok.Areas.Manage.Controllers
             return RedirectToAction("index");
         }
 
+        [AuthFilter(Roles = "SuperAdmin")]
         public IActionResult Delete(int id)
         {
             Slider slider = _context.Sliders.FirstOrDefault(x => x.Id == id);
