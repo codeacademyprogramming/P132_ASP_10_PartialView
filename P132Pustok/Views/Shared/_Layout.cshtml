@@ -1,7 +1,14 @@
-﻿@using P132Pustok.Services
+﻿@using Microsoft.AspNetCore.Identity
+@using P132Pustok.Services
 @inject LayoutService layoutService
+@inject UserManager<AppUser> _usermanager
 @{
     List<Genre> genres = layoutService.GetGenres();
+    AppUser user = null;
+    if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
+    {
+        user = _usermanager.FindByNameAsync(User.Identity.Name).Result;
+    }
     Dictionary<string, string> settings = layoutService.GetSettings();
 }
 <!DOCTYPE html>
@@ -192,8 +199,15 @@
                             <div class="main-navigation flex-lg-right">
                                 <div class="cart-widget">
                                     <div class="login-block">
-                                        <a href="login-register.html" class="font-weight-bold">Login</a> <br>
-                                        <span>or</span><a href="login-register.html">Register</a>
+                                        @if(User.Identity.IsAuthenticated && User.IsInRole("Member")){
+                                            <a href="login-register.html" class="font-weight-bold">@user.Fullname</a> <br>
+                                        }
+                                        else
+                                        {
+                                            <a asp-action="login" asp-controller="account" class="font-weight-bold">Login</a> <br>
+                                        <span>or</span><a asp-action="register" asp-controller="account">Register</a>
+                                        }
+                                        
                                     </div>
                                     <div class="cart-block">
                                         <div class="cart-total">

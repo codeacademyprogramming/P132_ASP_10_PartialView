@@ -2,7 +2,7 @@
 
 namespace P132Pustok.ViewModels
 {
-    public class MemberRegisterVM
+    public class MemberRegisterViewModel
     {
         [MaxLength(25)]
         public string Username { get; set; }

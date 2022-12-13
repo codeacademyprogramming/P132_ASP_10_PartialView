@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using P132Pustok.Areas.Manage.ViewModels;
 using P132Pustok.DAL;
@@ -8,6 +9,8 @@ using P132Pustok.Models;
 namespace P132Pustok.Areas.Manage.Controllers
 {
     [Area("manage")]
+    [Authorize(Roles = "SuperAdmin,Admin,Editor")]
+
     public class BookController : Controller
     {
         private readonly PustokContext _context;
