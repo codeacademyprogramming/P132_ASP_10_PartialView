@@ -170,25 +170,34 @@
 													<div class="row">
 														<div class="col-lg-6 col-12  mb--30">
 															<input id="first-name" asp-for="Fullname" placeholder="Full Name" type="text">
+															<span class="text-danger" asp-validation-for="Fullname"></span>
 														</div>
 														<div class="col-lg-6 col-12  mb--30">
 															<input id="last-name" asp-for="Username" placeholder="Username" type="text">
+															<span class="text-danger" asp-validation-for="Username"></span>
 														</div>
 														<div class="col-12  mb--30">
 															<input id="email" asp-for="Email" placeholder="Email Address" type="email">
+															<span class="text-danger" asp-validation-for="Email"></span>
 														</div>
 														<div class="col-12  mb--30">
 															<h4>Password change</h4>
 														</div>
 														<div class="col-12  mb--30">
 															<input id="current-pwd" asp-for="CurrentPassword" placeholder="Current Password" type="password">
+															<span class="text-danger" asp-validation-for="CurrentPassword"></span>
 														</div>
 														<div class="col-lg-6 col-12  mb--30">
 															<input id="new-pwd" asp-for="Password" placeholder="New Password" type="password">
+															<span class="text-danger" asp-validation-for="Password"></span>
 														</div>
 														<div class="col-lg-6 col-12  mb--30">
 															<input id="confirm-pwd" asp-for="ConfirmPassword" placeholder="Confirm Password" type="password">
+															<span class="text-danger" asp-validation-for="ConfirmPassword"></span>
 														</div>
+														<div class="col-lg-6 col-12  mb--30">
+															<div class="text-danger" asp-validation-summary="ModelOnly"></div>
+															<div></div>
 														<div class="col-12">
 															<button type="submit" class="btn btn--primary">Save Changes</button>
 														</div>

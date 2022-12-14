@@ -42,9 +42,6 @@ namespace P132Pustok.Controllers
             return View(homeVM);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+      
     }
 }

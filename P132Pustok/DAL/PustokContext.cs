@@ -20,5 +20,7 @@ namespace P132Pustok.DAL
         public DbSet<Tag> Tags { get; set; }
         public DbSet<BookTag> BookTags { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }
+
+        public DbSet<Review> Reviews { get; set; }
     }
 }

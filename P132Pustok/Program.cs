@@ -24,6 +24,25 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(opt =>
 builder.Services.AddScoped<LayoutService>();
 //builder.Services.AddTransient<LayoutService>();
 
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Events.OnRedirectToAccessDenied = options.Events.OnRedirectToLogin = context =>
+    {
+        if (context.HttpContext.Request.Path.Value.StartsWith("/manage"))
+        {
+            var redirectPath = new Uri(context.RedirectUri);
+            context.Response.Redirect("/manage/account/login" + redirectPath.Query);
+        }
+        else
+        {
+            var redirectPath = new Uri(context.RedirectUri);
+            context.Response.Redirect("/account/login"+ redirectPath.Query);
+        }
+
+        return Task.CompletedTask;
+    };
+});
+
 
 var app = builder.Build();
 
