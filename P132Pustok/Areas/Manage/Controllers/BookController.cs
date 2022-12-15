@@ -23,7 +23,7 @@ namespace P132Pustok.Areas.Manage.Controllers
         }
         public IActionResult Index(int page = 1)
         {
-            var query = _context.Books
+            var query = _context.Books  
                 .Include(x => x.Genre)
                 .Include(x => x.Author)
                 .Include(x => x.BookImages);

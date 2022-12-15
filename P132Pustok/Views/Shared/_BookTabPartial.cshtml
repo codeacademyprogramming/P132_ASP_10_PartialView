@@ -29,7 +29,7 @@
                         @spBook.Author.Fullname
                     </a>
                     <h3>
-                        <a href="product-details.html">
+                        <a asp-action="detail" asp-controller="book" asp-route-id="@spBook.Id">
                             @spBook.Name
                         </a>
                     </h3>
@@ -43,7 +43,7 @@
                                 <img src="~/assets/image/products/@(hoverPoster==null?"product-14.jpg":hoverPoster.Name)" alt="">
                             </a>
                             <div class="hover-btns">
-                                <a href="cart.html" class="single-btn">
+                                <a asp-action="addtobasket" asp-controller="book" asp-route-bookId="@spBook.Id" class="single-btn add-to-basket">
                                     <i class="fas fa-shopping-basket"></i>
                                 </a>
                                 <a href="wishlist.html" class="single-btn">

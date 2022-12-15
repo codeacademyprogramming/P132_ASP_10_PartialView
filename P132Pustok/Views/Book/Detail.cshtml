@@ -1,5 +1,4 @@
 ﻿@model BookDetailViewModel
-
 <section class="breadcrumb-section">
     <h2 class="sr-only">Site Breadcrumb</h2>
     <div class="container">
@@ -80,14 +79,14 @@
                     </div>
                     <div class="rating-widget">
                         <div class="rating-block">
-                            <span class="fas fa-star star_on"></span>
-                            <span class="fas fa-star star_on"></span>
-                            <span class="fas fa-star star_on"></span>
-                            <span class="fas fa-star star_on"></span>
-                            <span class="fas fa-star "></span>
+                            @for (var i = 1; i <= 5; i++)
+                            {
+                            <span class="fas fa-star @(Model.Book.AvgRate>=i?"star_on":"")"></span>
+                                
+                            }
                         </div>
                         <div class="review-widget">
-                            <a href="#">(1 Reviews)</a> <span>|</span>
+                            <a href="#">(@Model.Book.Reviews.Count Reviews)</a> <span>|</span>
                             <a href="#">Write a review</a>
                         </div>
                     </div>
@@ -129,7 +128,7 @@
                 <li class="nav-item">
                     <a class="nav-link" id="tab2" data-toggle="tab" href="#tab-2" role="tab"
                        aria-controls="tab-2" aria-selected="true">
-                        REVIEWS (1)
+                        REVIEWS (@Model.Book.Reviews.Count)
                     </a>
                 </li>
             </ul>
@@ -158,30 +157,39 @@
                 </div>
                 <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="tab2">
                     <div class="review-wrapper">
-                        <h2 class="title-lg mb--20">1 REVIEW FOR AUCTOR GRAVIDA ENIM</h2>
-                        <div class="review-comment mb--20">
+                        <h2 class="title-lg mb--20">@Model.Book.Reviews.Count REVIEW FOR @Model.Book.Name</h2>
+                     @foreach (var rw in Model.Book.Reviews)
+                     {
+                            <div class="review-comment mb--20">
                             <div class="avatar">
                                 <img src="~/assets/image/icon/author-logo.png" alt="">
                             </div>
                             <div class="text">
                                 <div class="rating-block mb--15">
-                                    <span class="ion-android-star-outline star_on"></span>
-                                    <span class="ion-android-star-outline star_on"></span>
-                                    <span class="ion-android-star-outline star_on"></span>
-                                    <span class="ion-android-star-outline"></span>
-                                    <span class="ion-android-star-outline"></span>
+                                        @for(int i = 1; i <= 5; i++)
+                                        {
+                                         <span class="ion-android-star-outline @(rw.Rate>=i?"star_on":"")"></span>
+                                        }
                                 </div>
                                 <h6 class="author">
-                                    ADMIN – <span class="font-weight-400">March 23, 2015</span>
+                                    @rw.AppUser.Fullname – <span class="font-weight-400">@rw.CreatedAt.ToString("dd MMMM, yyyy")</span>
                                 </h6>
                                 <p>
-                                    Lorem et placerat vestibulum, metus nisi posuere nisl, in accumsan elit odio
-                                    quis mi.
+                                   @rw.Text
                                 </p>
                             </div>
                         </div>
-                        <h2 class="title-lg mb--20 pt--15">ADD A REVIEW</h2>
-                        @await Html.PartialAsync("_BookReviewFormPartial",Model.ReviewVM)
+                     }
+                        @if (Model.HasReview)
+                        {
+                            <h2 class="title-lg mb--20 pt--15"> You have written a review</h2>
+                        }
+                        else
+                        {
+                            <h2 class="title-lg mb--20 pt--15">ADD A REVIEW</h2>
+                            @await Html.PartialAsync("_BookReviewFormPartial",Model.ReviewVM)
+                        }
+                        
                     </div>
                 </div>
             </div>
