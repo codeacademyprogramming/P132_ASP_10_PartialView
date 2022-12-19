@@ -27,7 +27,9 @@ $(document).on("click", ".add-to-basket", function (e) {
             if (!response.ok) {
                 alert("Mehsul bitib!")
             }
-            return response.text();
+            else {
+                return response.text();
+            }
         }).then(html => {
             $("#basket-block").html(html)
         })

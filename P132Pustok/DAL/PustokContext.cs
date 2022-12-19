@@ -23,5 +23,8 @@ namespace P132Pustok.DAL
 
         public DbSet<Review> Reviews { get; set; }
         public DbSet<BasketItem> BasketItems { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+
     }
 }

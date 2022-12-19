@@ -188,5 +188,19 @@ namespace P132Pustok.Controllers
 
             return RedirectToAction("login");
         }
+
+        public async Task<IActionResult> ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel forgotPassword)
+        {
+            AppUser user = await _userManager.FindByEmailAsync(forgotPassword.Email);
+
+
+            return View();
+        }
     }
 }
