@@ -23,11 +23,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Use Minified Plugins Version For Fast Page Load -->
     <link rel="stylesheet" type="text/css" media="screen" href="~/assets/css/plugins.css" />
+    <link  rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
     <link rel="stylesheet" type="text/css" media="screen" href="~/assets/css/main.css" />
     <link rel="shortcut icon" type="image/x-icon" href="~/assets/image/favicon.ico">
 </head>
 
 <body>
+    @if(TempData["error"]!=null){
+        <input type="hidden" value="@TempData["error"]" id="toastr-error"/>
+    }
     <div class="site-wrapper" id="top">
         <div class="site-header d-none d-lg-block">
             <div class="header-middle pt--10 pb--10">
@@ -248,7 +252,7 @@
 
                                     </div>
                                     <div class="cart-block" id="basket-block">
-                                                 @await Html.PartialAsync("_BasketPartial",basket)
+                                        @await Html.PartialAsync("_BasketPartial",basket)
                                     </div>
                                 </div>
                             </div>
@@ -874,6 +878,34 @@
     <script src="~/assets/js/plugins.js"></script>
     <script src="~/assets/js/ajax-mail.js"></script>
     <script src="~/assets/js/custom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+
+         toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+
+
+          $(document).ready(function(){
+                if($("#toastr-error").length){
+                    toastr["error"]($("#toastr-error").val())
+                }
+          })
+    </script>
     <script src="~/assets/js/main.js"></script>
 
     @RenderSection("Scripts",required:false);

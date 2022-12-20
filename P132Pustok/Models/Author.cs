@@ -8,5 +8,7 @@ namespace P132Pustok.Models
 
         [MaxLength(50)]
         public string Fullname { get; set; }
+
+        public List<Book>? Books { get; set; }
     }
 }

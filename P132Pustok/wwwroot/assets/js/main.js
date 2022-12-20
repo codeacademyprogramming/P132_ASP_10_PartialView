@@ -25,9 +25,11 @@ $(document).on("click", ".add-to-basket", function (e) {
     fetch(url)
         .then(response => {
             if (!response.ok) {
-                alert("Mehsul bitib!")
+                toastr["error"]("məhsul bitib!")
+                return;
             }
             else {
+                toastr["success"]("məhsul səbətə əlavə edildi!")
                 return response.text();
             }
         }).then(html => {

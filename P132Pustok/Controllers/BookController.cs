@@ -39,6 +39,12 @@ namespace P132Pustok.Controllers
                 .Include(x=>x.BookTags).ThenInclude(x=>x.Tag)
                 .FirstOrDefault(x => x.Id == id);
 
+            if (book == null)
+            {
+                TempData["error"] = "Book yoxdur";
+                return RedirectToAction("index", "home");
+            }
+
             BookDetailViewModel detailVM = new BookDetailViewModel
             {
                 Book = book,
@@ -56,8 +62,7 @@ namespace P132Pustok.Controllers
                 }
             }
 
-            if (book == null)
-                return NotFound();
+            
 
             return View(detailVM);
         }
